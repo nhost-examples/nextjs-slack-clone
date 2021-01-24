@@ -46,6 +46,7 @@ export function ChannelAddMessage({ channel }) {
           <input
             type="text"
             value={message}
+            autoFocus
             onChange={(e) => setMessage(e.target.value)}
             className="w-full px-4"
             placeholder={`Message #${channel.name}`}
