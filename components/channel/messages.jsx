@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { parseISO, format } from "date-fns";
 
 export function Message({ message }) {
@@ -18,13 +19,23 @@ export function Message({ message }) {
 }
 
 export function ChannelMessages({ messages }) {
+  const messagesEndRef = useRef(null);
+
   messages = messages.reverse();
+
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
+  }, [messages]);
 
   return (
     <div className="px-6 py-4 flex-1 overflow-y-scroll">
       {messages.map((message) => {
         return <Message key={message.id} message={message} />;
       })}
+      <div ref={messagesEndRef} style={{ height: 0 }} />
     </div>
   );
 }
