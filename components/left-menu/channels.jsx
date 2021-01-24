@@ -6,7 +6,7 @@ import slugify from "slugify";
 
 const GET_CHANNELS = gql`
   subscription getChannels {
-    channels {
+    channels(where: { is_public: { _eq: true } }) {
       id
       name
     }
