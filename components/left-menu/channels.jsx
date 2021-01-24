@@ -28,6 +28,9 @@ export function Channels() {
 
   async function onCreateChannel() {
     const name = prompt("Enter a value");
+    if (!name) {
+      return;
+    }
 
     const channelCreated = await createChannel({
       variables: {
